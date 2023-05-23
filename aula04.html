@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Introdução ao Alpine.js</title>
+
+  <script src="//unpkg.com/alpinejs" defer></script>
+</head>
+
+<body>
+  <section x-data="{
+    search: '',
+    result: {},
+    doSearch() {
+      fetch('https://dummyjson.com/products/search?q=' + this.search)
+      .then(res => res.json())
+      .then(json=> this.result = json);
+    }
+  }">
+
+    <input type="text" x-model="search">
+    <button type="button" x-on:click="doSearch">Pesquisar</button>
+
+    <p style="color:red;" x-show="result.products?.length == 0">
+      Não foi encontrado nenhum resultado.
+    </p>
+
+    <div x-show="result.products?.length > 0">
+      <h2><b>Título: </b> <span x-text="result.products[0].title"></span></h2>
+      <p><b>Descrição: </b><span x-text="result.products[0].description"></span></p>
+      <p><b>Marca: </b><span x-text="result.products[0].brand"></span></p>
+    </div>
+  </section>
+</body>
+
+</html>
