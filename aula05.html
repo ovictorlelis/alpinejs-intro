@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Introdução ao Alpine.js</title>
+
+  <script src="//unpkg.com/alpinejs" defer></script>
+</head>
+
+<body>
+  <!-- 
+  <form x-data="{terms:false}">
+    <label for="terms">Aceitar termos de uso</label>
+    <input type="checkbox" x-model="terms">
+    <br><br>
+    <button type="submit">Enviar</button>
+    <br><br>
+    <span x-text="terms"></span>
+  </form>
+  -->
+
+  <!-- 
+  <form action="" x-on:submit.prevent="submit" x-data="{
+    posts:[],
+    submit(){
+      console.log(this.posts);
+  }
+  }">
+    <input type="checkbox" x-model="posts" value="1"> Post 1 <br>
+    <input type="checkbox" x-model="posts" value="2"> Post 2 <br>
+    <input type="checkbox" x-model="posts" value="3"> Post 3 <br>
+
+    <span x-text="posts"></span>
+    <button type="submit" x-on:click.prevent="submit">Deletar</button>
+    <button type="submit">Deletar</button>
+  </form> 
+  -->
+
+  <!--
+  <form action="" x-data="{plan: 'mensal'}">
+    <select x-model="plan">
+      <option value="">Selecione um plano</option>
+      <option value="mensal">Mensal</option>
+      <option value="anual">Anual</option>
+    </select>
+    <hr>
+    <span x-text="plan"></span>
+  </form>
+  -->
+
+  <form action="" x-data="{plan: 'mensal'}">
+    Mensal
+    <input type="radio" x-model="plan" value="mensal">
+    Anual
+    <input type="radio" x-model="plan" value="anual">
+    <hr>
+    <span x-text="plan"></span>
+  </form>
+</body>
+
+</html>
