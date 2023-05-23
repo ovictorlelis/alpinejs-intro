@@ -28,10 +28,15 @@
       Não foi encontrado nenhum resultado.
     </p>
 
-    <div x-show="result.products?.length > 0">
-      <h2><b>Título: </b> <span x-text="result.products[0].title"></span></h2>
-      <p><b>Descrição: </b><span x-text="result.products[0].description"></span></p>
-      <p><b>Marca: </b><span x-text="result.products[0].brand"></span></p>
+    <div x-show="result.products?.length > 0" :key="product.id">
+      <template x-for="product in result.products">
+        <div>
+          <h2><b>Título: </b> <span x-text="product.title"></span></h2>
+          <p><b>Descrição: </b><span x-text="product.description"></span></p>
+          <p><b>Marca: </b><span x-text="product.brand"></span></p>
+          <hr>
+        </div>
+      </template>
     </div>
   </section>
 </body>
