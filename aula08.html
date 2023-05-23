@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Introdução ao Alpine.js</title>
+
+  <script src="//unpkg.com/alpinejs" defer></script>
+</head>
+
+<body>
+  <!-- 
+  <section x-data="{todo: ['Tarefa 1', 'Tarefa 2', 'Tarefa 3']}">
+    <ul>
+      <template x-for="tarefa in todo">
+        <li x-text="tarefa"></li>
+      </template>
+    </ul>
+  </section>
+  -->
+
+  <section x-data="{posts: [
+    {id: 1, title: 'Post 1', body: 'Conteúdo 1'},
+    {id: 2, title: 'Post 2', body: 'Conteúdo 2'},
+    {id: 3, title: 'Post 3', body: 'Conteúdo 3'},
+  ]}">
+    <template x-for="(post, index) in posts" :key="post.id">
+      <article>
+        <header>
+          <h3>#<span x-text="index+1"></span> <span x-text="post.title"></span></h3>
+        </header>
+        <div x-html="post.body"></div>
+      </article>
+    </template>
+  </section>
+</body>
+
+</html>
