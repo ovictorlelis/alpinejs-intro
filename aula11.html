@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Introdução ao Alpine.js</title>
+
+  <script src="//unpkg.com/alpinejs" defer></script>
+</head>
+
+<body>
+  <section x-data="{
+    show_modal: false,
+
+  }">
+    <button x-on:click="alert('Um texto qualquer')">Clique aqui</button>
+    <button @click="alert('Um texto qualquer')">Clique aqui</button>
+    <br><br>
+
+    <input type="search" placeholder="Pesquisa..." @keyup.enter="alert($el.value)">
+    <br><br>
+
+    <button type="button" @click="$dispatch('modal')">Modal</button>
+    <div @keyup.escape.window.debounce="show_modal=false" @modal.window="show_modal=!show_modal" x-show="show_modal">
+      <h1>Modal</h1>
+      <p>
+        Lorem ipsum dolor sit amet consectetur, adipisicing elit. Temporibus illo voluptates excepturi corporis quaerat deleniti molestias quam voluptatibus commodi veniam cupiditate est molestiae neque, quae mollitia? Eius cumque eum nostrum.
+      </p>
+    </div>
+    <br><br>
+
+    <form action="" @submit.prevent="alert('enviou formulário')">
+      <textarea cols="30" rows="10"></textarea> <br>
+      <button type="submit">Enviar comentário</button>
+    </form>
+    <br><br>
+  </section>
+</body>
+
+</html>
