@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Introdução ao Alpine.js</title>
+
+  <script src="//unpkg.com/alpinejs" defer></script>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    document.addEventListener('alpine:init', () => {
+      Alpine.store('message', '');
+    });
+  </script>
+</head>
+
+<body>
+  <section x-data x-show="$store.message" class="bg-yellow-500 p-4 rounded-lg max-w-[80%] mt-4 mx-auto flex">
+    <p class="flex-1" x-text="$store.message"></p>
+    <svg @click="$store.message=''" class="w-6 h-6 cursor-pointer" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"></path>
+    </svg>
+  </section>
+
+  <main x-data x-init="
+    fetch('https://jsonplaceholder.typicode.com')
+      .then(response => response.json())
+      .then(json => console.log(json))
+      .catch(()=> $store.message = 'Erro ao buscar dados na API')
+  ">
+
+  </main>
+</body>
+
+</html>
