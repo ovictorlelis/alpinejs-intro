@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Introdução ao Alpine.js</title>
+
+  <script src="//unpkg.com/alpinejs" defer></script>
+  <script>
+    document.addEventListener('alpine:init', () => {
+      Alpine.magic('info', () => {
+        return 'informação de teste';
+      });
+
+      Alpine.magic('data', () => {
+        let d = new Date();
+        return `${d.getDate()}/${d.getMonth()}/${d.getFullYear()}`;
+      });
+    });
+  </script>
+</head>
+
+<body>
+  <section x-data>
+    <h1 x-text="$info"></h1>
+    <p x-text="$data"></p>
+  </section>
+
+  <hr>
+
+  <section x-data>
+    <h1 x-text="$info" style="color:red;"></h1>
+  </section>
+</body>
+
+</html>
