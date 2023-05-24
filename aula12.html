@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Introdução ao Alpine.js</title>
+
+  <script src="//unpkg.com/alpinejs" defer></script>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body>
+  Lorem ipsum dolor sit amet consectetur, adipisicing elit. Recusandae quidem hic nam nobis quas delectus saepe consectetur voluptates quibusdam suscipit. Vero qui modi natus magnam maxime aperiam facilis iusto soluta!
+  Lorem ipsum dolor sit amet consectetur adipisicing elit. Laudantium, maiores maxime quas suscipit sunt quaerat velit corrupti quisquam voluptates? Nulla excepturi cupiditate recusandae eligendi? In hic velit voluptatem laboriosam soluta!
+
+  <section x-data="{
+    show_modal: false,
+    title:'',
+    content:'',
+    showModal(title, content) {
+      this.title = title;
+      this.content = content;
+      this.show_modal=true;
+    }
+  }">
+    <button type="button" @click="showModal('Título', 'Meu conteúdo')" class="inline-flex items-center bg-violet-600 text-white px-3 py-2 rounded m-4">
+      Modal 1
+    </button>
+    <br>
+    <button type="button" @click="showModal('Título 2', 'Meu conteúdo 2')" class="inline-flex items-center bg-violet-600 text-white px-3 py-2 rounded m-4">
+      Modal 2
+    </button>
+
+    <template x-if="show_modal" @keyup.escape.window="show_modal=false" @modal.window="showModal($event.detail.title, $event.detail.content)">
+      <div class="absolute inset-0 bg-gray-700/70 flex items-center justify-center">
+        <div class="w-1/3 divide-y space-y-4 bg-white p-4 rounded-lg shadow border" @mousedown.outside="show_modal=false">
+          <header class="flex items-center justify-between">
+            <h4 class="font-bold text-lg" x-text="title"></h4>
+            <button @click="show_modal=false">
+              <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"></path>
+              </svg>
+            </button>
+          </header>
+          <div class="pt-4" x-html="content"></div>
+        </div>
+      </div>
+    </template>
+  </section>
+
+  <div x-data>
+    <button class="inline-flex items-center bg-violet-600 text-white px-3 py-2 rounded m-4" @click="$dispatch('modal', {title:'Título 3',content:'Meu conteúdo 3'})">
+      Modal 3
+    </button>
+  </div>
+
+  <button class="inline-flex items-center bg-violet-600 text-white px-3 py-2 rounded m-4" onclick="window.dispatchEvent(new CustomEvent('modal', {
+      detail: {
+        title: 'Título 4',
+        content: 'Meu conteúdo 4'
+      }}))">
+    Modal 4
+  </button>
+</body>
+
+</html>
